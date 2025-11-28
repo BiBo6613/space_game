@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://c44vdxff0rqkb"]
+
+[ext_resource type="Script" uid="uid://oxx4gls440rw" path="res://objects/spaceshep/door.gd" id="1_xjrtj"]
+[ext_resource type="Texture2D" uid="uid://chrjvxjk8ms8t" path="res://objects/spaceshep/door_A.png" id="2_ryrcd"]
+[ext_resource type="Texture2D" uid="uid://bi6jnlk6xcbf3" path="res://objects/spaceshep/door_B.png" id="3_bbv82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xghrl"]
+size = Vector2(29.5, 31)
+
+[sub_resource type="Animation" id="Animation_ryrcd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xghrl"]
+resource_name = "close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(22, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bbv82"]
+resource_name = "closse"
+
+[sub_resource type="Animation" id="Animation_xjrtj"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(22, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbv82"]
+_data = {
+&"RESET": SubResource("Animation_ryrcd"),
+&"close": SubResource("Animation_xghrl"),
+&"closse": SubResource("Animation_bbv82"),
+&"open": SubResource("Animation_xjrtj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbv82"]
+size = Vector2(21.5, 13)
+
+[node name="door" type="Node2D"]
+script = ExtResource("1_xjrtj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_xghrl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bbv82")
+}
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="layer_A" type="Sprite2D" parent="AnimatableBody2D"]
+z_index = 2
+texture = ExtResource("2_ryrcd")
+
+[node name="layer_b" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("3_bbv82")
+
+[node name="WollCollision" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_bbv82")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

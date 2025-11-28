@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://e517ixky1yrx"]
+
+[ext_resource type="Texture2D" uid="uid://bggy4vln1agre" path="res://objects/spaceshep/reak_room/reak_spaceship.png" id="1_nrv7y"]
+[ext_resource type="Texture2D" uid="uid://r8y7wfkgbf3y" path="res://objects/spaceshep/reak_room/reak_spaceship_B.png" id="2_uh534"]
+[ext_resource type="Texture2D" uid="uid://c7h07htuwj0cu" path="res://objects/spaceshep/reak_room/reak_spaceship_A.png" id="3_nuyyy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uh534"]
+radius = 23.997463
+height = 68.021904
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpxfb"]
+atlas = ExtResource("1_nrv7y")
+region = Rect2(0, 0, 78, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuyyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpxfb")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}]
+
+[node name="reak_spaceshep" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.1920929e-07, 2.9999995)
+rotation = 1.5853416
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_uh534")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nuyyy")
+animation = &"active"
+
+[node name="layer_1" type="Sprite2D" parent="."]
+texture = ExtResource("2_uh534")
+
+[node name="layer_2" type="Sprite2D" parent="."]
+z_index = 3
+texture = ExtResource("3_nuyyy")

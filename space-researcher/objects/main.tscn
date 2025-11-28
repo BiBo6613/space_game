@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1s0jc6c3vmd"]
+
+[ext_resource type="Texture2D" uid="uid://77daa7mxs8cj" path="res://objects/spaceshep/coridor.png" id="1_5wnch"]
+[ext_resource type="PackedScene" uid="uid://5nf2p2q73lwi" path="res://objects/spaceshep/space_engine_1.tscn" id="1_yd0qk"]
+[ext_resource type="PackedScene" uid="uid://jw6vy78y7wgb" path="res://objects/spaceshep/engine_room_2/space_engine_2.tscn" id="2_yd0qk"]
+[ext_resource type="PackedScene" uid="uid://d0273nu7icyli" path="res://objects/spaceshep/servers_room/servers_room.tscn" id="3_f1df6"]
+[ext_resource type="PackedScene" uid="uid://caphioi76tvh5" path="res://objects/spaceshep/reak_room/reak_room.tscn" id="5_n3uw7"]
+[ext_resource type="PackedScene" uid="uid://gauittehm4ls" path="res://objects/spaceshep/rest_room/rest_room.tscn" id="6_t1t6x"]
+[ext_resource type="PackedScene" uid="uid://b4thgr5t6dj7v" path="res://objects/spaceshep/manegment_room/manegment_room.tscn" id="7_xpy5u"]
+
+[node name="main" type="Node2D"]
+position = Vector2(77, 66)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(228.50002, 125)
+scale = Vector2(1.1264045, 1)
+texture = ExtResource("1_5wnch")
+
+[node name="space_engine_1" parent="." instance=ExtResource("1_yd0qk")]
+position = Vector2(0, 2)
+
+[node name="space_engine_2" parent="." instance=ExtResource("2_yd0qk")]
+position = Vector2(-3, 226)
+
+[node name="servers_room" parent="." instance=ExtResource("3_f1df6")]
+position = Vector2(157, 6)
+
+[node name="reak_room" parent="." instance=ExtResource("5_n3uw7")]
+position = Vector2(154, 220)
+
+[node name="rest_room" parent="." instance=ExtResource("6_t1t6x")]
+position = Vector2(333, 6)
+
+[node name="manegment_room" parent="." instance=ExtResource("7_xpy5u")]
+position = Vector2(508, 113)
